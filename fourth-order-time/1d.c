@@ -109,3 +109,15 @@ u[t2][x + 2] = r5*(dt*dt)*((2.5e-1F*(r2*r2)*(-b[x + 1] + b[x + 3])*(-u[t0][x + 1
 // pde = model.m * u.dt2 - 1/model.b * (model.b * u.dxc).dxc
 u[t2][x + 2] = r4*(dt*dt)*((2.5e-1F*(-r5*(-u[t0][x] + u[t0][x + 2])*b[x + 1] + r5*(-u[t0][x + 2] + u[t0][x + 4])*b[x + 3]))/b[x + 2]
 			   + (-r3*(-2.0F*u[t0][x + 2]) - r3*u[t1][x + 2])/r4);
+
+
+
+// pde = model.m * u.dt2 - 1/model.b * ((model.b * u).dx2 - u*model.b.dx2 + model.b*u.dx2)
+u[t2][x + 2] = r4*(dt*dt)*((r2*(-2.0F*b[x + 2]*u[t0][x + 2]) + r2*b[x + 1]*u[t0][x + 1] + r2*b[x + 3]*u[t0][x + 3] + 
+			   (r2*r5 + r2*u[t0][x + 1] + r2*u[t0][x + 3])*b[x + 2] - (r2*b[x + 1] + r2*(-2.0F*b[x + 2]) + r2*b[x + 3])*u[t0][x + 2])/b[x + 2]
+			   + (-r3*r5 - r3*u[t1][x + 2])/r4);
+
+// pde = model.m * u.dt2 - 1/model.b * ((model.b * u).laplace - u*model.b.laplace + model.b*u.laplace)
+u[t2][x + 2] = r4*(dt*dt)*((r2*(-2.0F*b[x + 2]*u[t0][x + 2]) + r2*b[x + 1]*u[t0][x + 1] + r2*b[x + 3]*u[t0][x + 3] + 
+			   (r2*r5 + r2*u[t0][x + 1] + r2*u[t0][x + 3])*b[x + 2] - (r2*b[x + 1] + r2*(-2.0F*b[x + 2]) + r2*b[x + 3])*u[t0][x + 2])/b[x + 2]
+			   + (-r3*r5 - r3*u[t1][x + 2])/r4);
